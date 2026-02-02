@@ -34,3 +34,22 @@ body {
 .container button:hover {
     background-color: #79a2e4;
 }
+
+.poemContainer {
+    display: flex;
+    align-items: left;
+}
+
+#output {
+    max-width: 50vw;
+    display: flex;
+    justify-content: center;
+    text-align: left;
+}
+
+.containerOut {
+    display: flex;
+    flex-direction: row;
+    gap: 25vw;
+    justify-content: space-between;
+}
