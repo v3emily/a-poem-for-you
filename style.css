@@ -53,3 +53,57 @@ body {
     gap: 25vw;
     justify-content: space-between;
 }
+
+/*Setting up the collage in a Fibonacci pattern!*/
+
+.img1-1 {
+    width: 4vmin;
+    height: 4vmin;
+    /* background-color: red; */
+}
+
+.img1-2 {
+    width: 4vmin;
+    height: 4vmin;
+    /* background-color: orange; */
+}
+
+.img2 {
+    width: 8vmin;
+    height: 8vmin;
+    /* background-color: yellow; */
+}
+
+.img3 {
+    width: 12vmin;
+    height: 12vmin;
+    /* background-color: green; */
+}
+
+.img5 {
+    width: 20vmin;
+    height: 20vmin;
+    /* background-color: blue; */
+}
+
+.img8 {
+    width: 32vmin;
+    height: 32vmin;
+    /* background-color: purple; */
+}
+
+.img13 {
+    width: 52vmin;
+    height: 52vmin;
+    /* background-color: gray; */
+}
+
+.containerVert {
+    display: flex;
+    flex-direction: column;
+}
+
+.containerHor {
+    display: flex;
+    flex-direction: row;
+}

@@ -36,6 +36,8 @@ async function load() {
     output.textContent = bestMatch
     ? `${bestMatch.title}\n\n${bestMatch.poet}\n\n${bestMatch.text}`
     : "No match found.";
+
+    await populateImages();
 }
 
 async function loadCSV() {
@@ -124,5 +126,87 @@ function similarityScore(inputWords, poemWords) {
 
     console.log(matches)
     return matches;
+}
+
+//all photo generation from Unsplash was vibe coded using ChatGPT
+
+const imageClasses = [
+  "img8",
+  "img5",
+  "img2",
+  "img1-1",
+  "img1-2",
+  "img3",
+  "img13"
+];
+
+const STOP_WORDS = new Set([
+  "the","and","or","but","if","you","i","me","we","they",
+  "it","is","was","are","to","of","in","on","for","with"
+]);
+
+function getQueryWords(count) {
+    const savedText = localStorage.getItem("savedQuote") || "";
+    let words = tokenize(savedText).filter(w => !STOP_WORDS.has(w));
+
+    if (words.length === 0) words = ["poetry"];
+
+    const queries = [];
+    for (let i = 0; i < count; i++) {
+        queries.push(words[Math.floor(Math.random() * words.length)]);
+    }
+
+    return queries;
+}
+
+const UNSPLASH_KEY = "YOUR_ACCESS_KEY";
+
+async function fetchImage(query) {
+    const url =
+      `https://api.unsplash.com/photos/random` +
+      `?query=${encodeURIComponent(query)}` +
+      `&orientation=squarish` +
+      `&client_id=${UNSPLASH_KEY}`;
+
+    const response = await fetch(url);
+    const data = await response.json();
+
+    if (!data.urls) {
+        console.error("Unsplash returned error:", data);
+        return null;
+    }
+
+    console.log("Unsplash response:", data);
+
+    return {
+        imageUrl: data.urls.small,
+        pageUrl: data.links.html
+    };
+}
+
+async function populateImages() {
+    const queries = getQueryWords(imageClasses.length);
+
+    for (let i = 0; i < imageClasses.length; i++) {
+        const imgDiv = document.querySelector(`.${imageClasses[i]}`);
+        if (!imgDiv) continue;
+
+        try {
+            const result = await fetchImage(queries[i]);
+            if (!result) continue;
+
+            imgDiv.style.backgroundImage = `url(${result.imageUrl})`;
+            imgDiv.style.backgroundSize = "cover";
+            imgDiv.style.backgroundPosition = "center";
+            imgDiv.style.cursor = "pointer";
+
+            imgDiv.onclick = () => {
+                window.open(result.pageUrl, "_blank", "noopener,noreferrer");
+            };
+
+        } catch (err) {
+            console.error("Unsplash error:", err);
+        }
+    }
 }
 
