@@ -15,17 +15,17 @@ View documentation here: https://docs.google.com/document/d/15n91mf3p64zIjePrtl6
    
 ### 2. Register for Unsplash API
 
-2a. Sign up as a developer at https://unsplash.com/developers
-2b. Navigate to Developers/API < Your apps
-2c. Create a new application and complete all forms. The application should immediately be approved for demo mode and will grant you 50 requests per hour.
-    **Note: one iteration of this program uses 7 requests
+2a. Sign up as a developer at https://unsplash.com/developers <br>
+2b. Navigate to Developers/API < Your apps <br>
+2c. Create a new application and complete all forms. The application should immediately be approved for demo mode and will grant you 50 requests per hour. <br>
+    **Note: one iteration of this program uses 7 requests <br>
 2d. Copy the access key and paste it into line 162 of script.js: const UNSPLASH_KEY = "YOUR_ACCESS_KEY";
 
 ### 3. Running the program
 
-3a. Open terminal (if not already open)
-3b. Install python3 on the device (if not already)
-3c. Paste this into the terminal: python3 -m http.server 8000
+3a. Open terminal (if not already open) <br>
+3b. Install python3 on the device (if not already) <br>
+3c. Paste this into the terminal: python3 -m http.server 8000 <br>
 
 4. In a browser, visit http://localhost:8000/
 
